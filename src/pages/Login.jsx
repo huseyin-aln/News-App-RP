@@ -73,7 +73,7 @@ export default function Login() {
             type="submit"
             fullWidth
             variant="contained"
-            color="secondary"
+            color="primary"
             sx={{ mt: 3, mb: 2 }}
           >
             Sign In
@@ -81,12 +81,9 @@ export default function Login() {
         </Box>
       </Box>
 
-      <Typography variant="body2" color="text.secondary" align="center">
+      <Typography variant="body2" color="text.primary" align="center">
         {"Copyright © "}
-        <Link color="inherit" href="https://www.clarusway.com/">
-          Clarusway
-        </Link>{" "}
-        {new Date().getFullYear()}
+        <Link color="inherit">HA</Link> {new Date().getFullYear()}
         {"."}
       </Typography>
     </Container>

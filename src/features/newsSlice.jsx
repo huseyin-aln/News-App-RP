@@ -6,22 +6,14 @@ const initialState = {
   loading: true,
 };
 
-//? State'lerin API gibi async kaynaklardan gelen verilere gore guncellenmesi gerekebilir.
-//? Ancak boyle bir durumda async islem tamamlandiktan sonra state guncellenmelidir.
-//? Gonderilen api istegi ile dogrudan state guncellememelidir.
-//? Islemin tamamlanmasi ile gelen veriye gore state'in guncellenemsini saglamak
-//? adina bir arabirim kullanilmaktadir.
-//? Bu arabirim middleware denilir.Redux-Toolkit, default olarak Thunk kullanmaktadir.
-//! Thunk'ın amaci reducers'a islenmis sonuclari gondermeden once gecikmeli asenkron ismlerinin yurutulmesini saglamaktir.
-
-const API_KEY = "6fb3bce3688d441dbf7bd064c81823c0";
+const API_KEY = process.env.REACT_APP_API_KEY;
+// const API_KEY = "6fb3bce3688d441dbf7bd064c81823c0";
 
 export const getNews = createAsyncThunk(
-  "news/getNews", //! action type ismi
+  "news/getNews",
 
-  //! async callback fun.
   async () => {
-    const url = `https://newsapi.org/v2/top-headlines?country=tr&apiKey=${API_KEY}`;
+    const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`;
     try {
       const { data } = await axios(url);
       return data.articles;
@@ -52,10 +44,6 @@ const newsSlice = createSlice({
     },
   },
 });
-
-//! baska slice'lardaki tanimlanan action'lara cevap vermek
-//! bilhassa createAsyncThunk tarafindan olusturulan action'lara
-//! cevap vermek icin kullanilir.
 
 export const { clearNewsList } = newsSlice.actions;
 
